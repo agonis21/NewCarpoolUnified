@@ -1,0 +1,3 @@
+RegistrationTime,userId,VIN,VehicleType,Model,Year,PlateNumber,stateRegistered
+2023-04-16T07:43:06.653332600,123,23665,car,rtw,2019,abc4,nyc
+2023-04-16T07:46:22.657228500,23,76460,yb,abd,2017,rtyu,ny

@@ -109,6 +109,7 @@ public class VehicleRegistration implements ActionListener {
                 // just writing
                 try (Writer writer = new BufferedWriter(new OutputStreamWriter(
                         new FileOutputStream("src/db/vehicle.txt"), "utf-8"))) {
+                    writer.write(content + vehicleEntry);
 
                 } catch (FileNotFoundException ex) {
                     throw new RuntimeException(ex);
