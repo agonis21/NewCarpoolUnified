@@ -21,6 +21,20 @@ public class Job {
     int redundancy;
 
 
+    public int getUserId(){return this.userId;}
+    public int getJobId(){return this.jobId;}
+    public String getJobType(){return this.jobType;}
+    public LocalDateTime getJobDeadline(){return this.jobDeadline;}
+    public LocalDateTime getStartTime(){return this.startTime;}
+
+    public LocalDateTime getEndTime() {
+        return endTime;
+    }
+
+    public int getRedundancy() {
+        return redundancy;
+    }
+
     //this constructor will be used to generate complete job objects from queries
     public Job(int jobId, int userId, String jobType, LocalDateTime jobDeadline,
                LocalDateTime startTime, LocalDateTime endTime, int duration, int redundancy){
