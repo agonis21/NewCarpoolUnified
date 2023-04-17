@@ -12,14 +12,42 @@ import java.util.Map;
 public class Job implements Serializable {
     int jobId; // Randomized integer value between 1 to 100000
     DummyUser user;
+    int userId;
     String jobType;
     LocalDateTime jobDeadline;
-    LocalDateTime userDuration;// job duration entered by user
-    //LocalDateTime actualDuration; // Actual Time to be calculated for job completion
-    //LocalDateTime startTime; // Time starts once job is submitted
-    // LocalDateTime endTime; // Time ends once job is completed
+    //LocalDateTime userDuration;// job duration entered by user
+    int duration; // Actual Time to be calculated for job completion
+    LocalDateTime startTime; // Time starts once job is submitted
+    LocalDateTime endTime; // Time ends once job is completed
     int redundancy;
+    public int getUserId(){return this.userId;}
+    public int getJobId(){return this.jobId;}
+    public String getJobType(){return this.jobType;}
+    public LocalDateTime getJobDeadline(){return this.jobDeadline;}
+    public LocalDateTime getStartTime(){return this.startTime;}
 
+    public LocalDateTime getEndTime() {
+        return endTime;
+    }
+
+    public int getRedundancy() {
+        return redundancy;
+    }
+
+    //this constructor will be used to generate complete job objects from queries
+    public Job(int jobId, int userId, String jobType, LocalDateTime jobDeadline,
+               LocalDateTime startTime, LocalDateTime endTime, int duration, int redundancy){
+
+        this.jobId=jobId;
+        this.userId=userId;
+        this.jobType=jobType;
+        this.jobDeadline=jobDeadline;
+        //this.userDuration=userDuration;
+        this.startTime=startTime;
+        this.endTime=endTime;
+        this.duration = duration;
+        this.redundancy=redundancy;
+    }
     public Job(DummyUser user, String jobType)
     {
         this.jobType = jobType;

@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.Random;
 import java.util.Scanner;
@@ -32,8 +33,9 @@ public class VehicleRegistration implements ActionListener {
     private JTextField StateTF;
     private JPasswordField PwordTF;
     private JPanel back;
-    private JLabel UserIDLabel;
+   // private JLabel UserIDLabel;
     private JTextField UserId;
+
 
     public VehicleRegistration(DummyUser user)
     {
@@ -66,9 +68,9 @@ public class VehicleRegistration implements ActionListener {
         if(source == registerButton)
         {
             Random randomizer = new Random();
-
+            int userID = user.getUserID();
             int vin = randomizer.nextInt(100000);
-            String userID =  UserId.getText();
+            //String userID =  UserId.getText();
             String VIN = ""+vin;
             String carmake = MakeTF.getText();
             String carmodel = ModelTF.getText();
@@ -77,7 +79,9 @@ public class VehicleRegistration implements ActionListener {
             String stateReg = StateTF.getText();
             String timeofReg = String.valueOf(LocalDateTime.now());
 
-            String vehicleEntry = timeofReg+","+userID+","+VIN+","+carmake+","+carmodel+","+caryear+","+carplateNum+","+stateReg;
+            String vehicleEntry = userID+","+carmake+","+carmodel+","+caryear+","+carplateNum+","+stateReg;
+
+            //String vehicleEntry = timeofReg+","+userID+","+VIN+","+carmake+","+carmodel+","+caryear+","+carplateNum+","+stateReg;
             System.out.println(vehicleEntry);
             System.out.println("Time of Registration:"+ LocalDateTime.now());
 
@@ -136,8 +140,18 @@ public class VehicleRegistration implements ActionListener {
                 String stateRegistered = StateTF.getText();
 
                 Vehicle dummyVehicle = new Vehicle(user,make,model,year,plateNum,stateRegistered);
-                user.setVehicle(dummyVehicle);
-                user.setIsDonor(true);
+                try {
+
+                    //CLIENT SERVER GOES HERE INSTEAD OF DIRECT INSERT
+
+                    if(VehicleDBAccess.insert(dummyVehicle))
+                        user.setVehicle(dummyVehicle);
+                    user.setIsDonor(true);
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+                //user.setVehicle(dummyVehicle);
+                //user.setIsDonor(true);
                 HowLong howLongPage = new HowLong(user);
                 System.out.println("VREG");
                 frame.dispose();
