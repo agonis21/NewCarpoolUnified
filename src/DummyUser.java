@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 public class DummyUser implements Serializable {
 
@@ -11,6 +12,31 @@ public class DummyUser implements Serializable {
     public Vehicle vehicle;
     public Job job;
     boolean hasActiveDonation;
+    Timestamp created;
+
+
+    //this constructor will be used to generate DummyUser objects from queries
+    public DummyUser(int userID, String username, String password, String fname, String lname, boolean isDonor, boolean hasActiveDonation, Timestamp timestamp)
+    {
+        this.userID=userID;
+        this.username=username;
+        this.password= password;
+        this.fname=fname;
+        this.lname=lname;
+        this.isDonor = isDonor;
+        this.hasActiveDonation=hasActiveDonation;
+        this.created = timestamp;
+    }
+    public DummyUser(String username, String password, String fname, String lname)
+    {
+        this.username = username;
+        this.password = password;
+        this.fname = fname;
+        this.lname = lname;
+
+
+
+    }
 
     public DummyUser(String username, String password)
     {
@@ -40,6 +66,9 @@ public class DummyUser implements Serializable {
     {
         return this.vehicle;
     }
+    public String getFname(){ return this.fname;}
+    public String getLname(){return this.lname;}
+
     public Job getJob()
     {
         return this.job;

@@ -1,3 +1,5 @@
+import src.JobRequest;
+
 import javax.swing.*;
 import javax.swing.Action;
 import java.awt.Desktop.*;
@@ -127,8 +129,14 @@ public class JobDetails implements ActionListener {
             System.out.println(userEntry);
             Job job1 = new Job(user,jobType);
             Requests requests = new Requests(job1);
-            Client client = new Client();
-            client.run(requests);
+            JobRequest jReq = new JobRequest(job1);
+            try {
+                SemClient client = new SemClient(jReq);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            } catch (ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
 
 
             //System.out.println("Time of Submission:"+ LocalDateTime.now());

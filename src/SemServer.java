@@ -1,5 +1,3 @@
-package SemTest;
-
 import java.io.*;
 import java.net.*;
 

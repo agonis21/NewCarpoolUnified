@@ -3,7 +3,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class AdminVCC {
@@ -17,6 +16,9 @@ public class AdminVCC {
     private JButton AcceptButton;
     private JLabel RequestInfo;
     private JButton DeclineButton;
+    private JButton VehicleButton;
+    private JButton JobButton;
+    private JButton UserButton;
     public Server server;
 
     AdminVCC(Server server) {
@@ -42,8 +44,9 @@ public class AdminVCC {
                 server.respond();
             }
         });
-    }
 
+    }
+   // @Override
     /* public void actionPerformed(ActionEvent e) {
          /*
          String messageIn = "";
@@ -98,7 +101,7 @@ public class AdminVCC {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-        //method to write
+        //method for vehicle to be fixed
     }
 
     public String unpack(Requests requests){
@@ -126,4 +129,27 @@ public class AdminVCC {
         return null;
 
     }
+
+    //@Override
+    public void actionPerformed(ActionEvent e) {
+
+        Object source = e.getSource();
+        if (source == UserButton)
+        {
+            UserLog userlog = new UserLog();
+            frame.dispose();
+        }
+        if (source == JobButton)
+        {
+            JobLog joblog = new JobLog();
+            frame.dispose();
+        }
+        if(source == VehicleButton)
+        {
+            VehicleLog vehiclelog = new VehicleLog();
+            frame.dispose();
+        }
+
+    }
+
 }
