@@ -13,7 +13,7 @@ public class VehicleDBAccess {
 
         conn = DBConnection.getMyConnection();
 
-        String query = "INSERT INTO vehicle(plateNumber,stateRegistered,year,make,model,created,userID) VALUES(?,?,?,?,?,current_timestamp(), ?);";
+        String query = "INSERT INTO vehicle(plateNumber,stateRegistered,year,make,model,created,userID,vehicleId) VALUES(?,?,?,?,?,current_timestamp(), ?,?);";
         PreparedStatement stmt = conn.prepareStatement(query);
 
         stmt.setString(1, vehicle.getPlateNumber());
@@ -21,7 +21,8 @@ public class VehicleDBAccess {
         stmt.setInt(3, vehicle.getYear());
         stmt.setString(4,vehicle.getMake());
         stmt.setString(5,vehicle.getModel());
-        stmt.setInt(6,vehicle.getUserId());
+        stmt.setString(6,vehicle.getUserId());
+        stmt.setString(7,vehicle.getVehicleId());
 
         int result = stmt.executeUpdate();
         if(result ==0)
@@ -46,8 +47,9 @@ public class VehicleDBAccess {
             String make = rs.getString("make");
             String model = rs.getString("model");
             Timestamp timestamp = rs.getTimestamp("created");
-            int userID = rs.getInt("userID");
-            Vehicle vehicle = new Vehicle(userID,make,model,year,plateNumber,stateRegistered);
+            String userID = rs.getString("userID");
+            String vehicleId= rs.getString("vehicleId");
+            Vehicle vehicle = new Vehicle(userID,vehicleId,make,model,year,plateNumber,stateRegistered);
             return vehicle;
         }
         else return null;

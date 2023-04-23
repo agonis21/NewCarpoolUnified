@@ -17,13 +17,17 @@ public class JobDBAccess {
 
         conn = DBConnection.getMyConnection();
 
-        String query = "INSERT INTO job(userID,jobType,jobDeadline, startTime) VALUES(?,?,?, current_timestamp());";
+        String query = "INSERT INTO job(userID,jobId,jobType,jobDeadline,jobDuration, timestamp) VALUES(?,?,?,?,?, current_timestamp());";
         PreparedStatement stmt = conn.prepareStatement(query);
 
-        Timestamp timestamp = Timestamp.valueOf(job.getJobDeadline());
-        stmt.setInt(1, job.getUserId());
-        stmt.setString(2, job.getJobType());
-        stmt.setTimestamp(3, timestamp);
+        Timestamp timestamp = Timestamp.valueOf(String.valueOf(LocalDateTime.now()));
+        stmt.setString(1, job.getUserId());
+        stmt.setString(2, job.getJobId());
+        stmt.setString(3, job.getJobType());
+        stmt.setString(4, job.getJobDeadline());
+        stmt.setString(5, job.getJobDuration());
+        stmt.setTimestamp(6, timestamp);
+        //stmt.setString(7, job.getJobCompletionTime());  // needs to be added and fixed
 
 
         int result = stmt.executeUpdate();
@@ -40,23 +44,17 @@ public class JobDBAccess {
 
 
     //NOT FINISHED NEEDS WORK
-    private static Vehicle buildJob(ResultSet rs)throws SQLException{
+    private static Job buildJob(ResultSet rs)throws SQLException{
         if(rs.next()){
-           /* int jobId = rs.getInt("jobID");
-            int userID = rs.getInt("userID");
+           String jobId = rs.getString("jobID");
+            String userID = rs.getString("userID");
             String jobType = rs.getString("jobType");
-            LocalDateTime jobDeadline = rs.getTimestamp("Deadline")
+            String jobDeadline = rs.getString("Deadline");
+            String jobDuration = rs.getString("Duration");
             Timestamp timestamp = rs.getTimestamp("created");
-            */
-            int userID = rs.getInt("userID");
-            String make= rs.getString("make");
-            String model = rs.getString("model");
-            int year = rs.getInt("year");
-            String plateNumber = rs.getString("plateNumber");
-            String stateRegistered = rs.getString("stateRegistered");
+            Job job = new Job(jobId,userID, jobType,jobDeadline,jobDuration,timestamp); // add completiontime
+            return job;
 
-            Vehicle vehicle = new Vehicle(userID,make,model,year,plateNumber,stateRegistered);
-            return vehicle;
         }
         else return null;
     }

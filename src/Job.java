@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.random.RandomGenerator;
 import java.time.Duration;
@@ -10,43 +11,47 @@ import java.util.Map;
 
 
 public class Job implements Serializable {
-    int jobId; // Randomized integer value between 1 to 100000
+    String jobId;
     DummyUser user;
-    int userId;
+    String userId;
     String jobType;
-    LocalDateTime jobDeadline;
+    String jobDeadline;
     //LocalDateTime userDuration;// job duration entered by user
-    int duration; // Actual Time to be calculated for job completion
-    LocalDateTime startTime; // Time starts once job is submitted
-    LocalDateTime endTime; // Time ends once job is completed
-    int redundancy;
-    public int getUserId(){return this.userId;}
-    public int getJobId(){return this.jobId;}
-    public String getJobType(){return this.jobType;}
-    public LocalDateTime getJobDeadline(){return this.jobDeadline;}
-    public LocalDateTime getStartTime(){return this.startTime;}
+    String duration;
+    Timestamp created;
 
-    public LocalDateTime getEndTime() {
-        return endTime;
-    }
+    // jobCompletiontime needs to be added
+
+    int redundancy;
+    public String getUserId(){return this.userId;}
+    public String getJobId(){return this.jobId;}
+    public String getJobType(){return this.jobType;}
+    public String getJobDeadline(){return this.jobDeadline;}
+    public String getJobDuration(){return this.duration;}
+
+    //public LocalDateTime getStartTime(){return this.startTime;}
+
+    //public LocalDateTime getEndTime() {
+       // return endTime;
+    //}
 
     public int getRedundancy() {
         return redundancy;
     }
 
     //this constructor will be used to generate complete job objects from queries
-    public Job(int jobId, int userId, String jobType, LocalDateTime jobDeadline,
-               LocalDateTime startTime, LocalDateTime endTime, int duration, int redundancy){
+    public Job(String jobId, String userId, String jobType, String jobDeadline, String duration, Timestamp timestamp){
 
         this.jobId=jobId;
         this.userId=userId;
         this.jobType=jobType;
         this.jobDeadline=jobDeadline;
+        created= timestamp;
         //this.userDuration=userDuration;
-        this.startTime=startTime;
-        this.endTime=endTime;
+       // this.startTime=startTime;
+       // this.endTime=endTime;
         this.duration = duration;
-        this.redundancy=redundancy;
+        //this.redundancy=redundancy;
     }
     public Job(DummyUser user, String jobType)
     {
@@ -62,7 +67,7 @@ public class Job implements Serializable {
         };
 
         // Generate a random integer between 1 and 100 and assign it to the jobId variable
-        jobId = random.nextInt(100000) + 1;
+      //  jobId = random.nextInt(100000) + 1;
     }
 
     /*public LocalDateTime calculateDuration(){
