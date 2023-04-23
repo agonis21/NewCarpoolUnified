@@ -23,6 +23,7 @@ public class About implements ActionListener {
     private JLabel filesAndJobLabel;
     private JLabel poolOfResourcesLabel;
     private JPanel TextPanel;
+    private JButton logOutButton;
 
     public About (DummyUser user)
     {
@@ -37,6 +38,7 @@ public class About implements ActionListener {
         HomeButton.addActionListener(this);
         TutorialButton.addActionListener(this);
         AccountButton.addActionListener(this);
+        logOutButton.addActionListener(this);
 
     }
 
@@ -60,6 +62,12 @@ public class About implements ActionListener {
         {
             Account accountPage = new Account(user);
             frame.dispose();
+        }
+        if (source == logOutButton)
+        {
+            frame.dispose();
+            SignIn signInPage = new SignIn();
+
         }
     }
 }

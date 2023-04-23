@@ -16,6 +16,7 @@ public class Home implements ActionListener {
     private JButton DonateButton;
     private JLabel HaveJobLabel;
     private JButton RentButton;
+    private JButton logOutButton;
 
     public Home(DummyUser user)
     {
@@ -33,6 +34,7 @@ public class Home implements ActionListener {
         AccountButton.addActionListener(this);
         DonateButton.addActionListener(this);
         RentButton.addActionListener(this);
+        logOutButton.addActionListener(this);
 
     }
 
@@ -84,7 +86,12 @@ public class Home implements ActionListener {
             JobDetails jobDetailsPage = new JobDetails(user);
             frame.dispose();
         }
+        if (source == logOutButton)
+        {
+            frame.dispose();
+            SignIn signInPage = new SignIn();
 
+        }
 
 
 

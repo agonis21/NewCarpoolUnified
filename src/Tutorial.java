@@ -24,6 +24,7 @@ public class Tutorial implements ActionListener {
     private JLabel RStep3;
     private JPanel RStep4;
     private JLabel RStep4Label;
+    private JButton logOutButton;
 
     public Tutorial(DummyUser user)
     {
@@ -38,6 +39,7 @@ public class Tutorial implements ActionListener {
         HomeButton.addActionListener(this);
         AboutButton.addActionListener(this);
         AccountButton.addActionListener(this);
+        logOutButton.addActionListener(this);
 
 
 
@@ -66,7 +68,12 @@ public class Tutorial implements ActionListener {
             frame.dispose();
         }
 
+        if (source == logOutButton)
+        {
+            frame.dispose();
+            SignIn signInPage = new SignIn();
 
+        }
 
 
 

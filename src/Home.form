@@ -105,6 +105,14 @@
                       <text value="Account"/>
                     </properties>
                   </component>
+                  <component id="c6e15" class="javax.swing.JButton" binding="logOutButton" default-binding="true">
+                    <constraints/>
+                    <properties>
+                      <font name="Trebuchet MS" size="18" style="0"/>
+                      <foreground color="-4121312"/>
+                      <text value="Log Out"/>
+                    </properties>
+                  </component>
                 </children>
               </toolbar>
               <component id="df10a" class="javax.swing.JLabel" binding="logoLabel">

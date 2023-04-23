@@ -1,3 +1,5 @@
+//import src.JobRequest;
+
 import javax.swing.*;
 import javax.swing.Action;
 import java.awt.Desktop.*;
@@ -96,7 +98,6 @@ public class JobDetails implements ActionListener {
             //selected
 
         }
-
         if (source== SubmitButton)
         {
 
@@ -125,12 +126,6 @@ public class JobDetails implements ActionListener {
             String userEntry = timeNow+","+userID+","+jobID+","+jobType+
                     ","+deadline+","+duration+","+jobCompletionTime;
             System.out.println(userEntry);
-            Job job1 = new Job(user,jobType);
-            Requests requests = new Requests(job1);
-            Client client = new Client();
-            client.run(requests);
-
-
             //System.out.println("Time of Submission:"+ LocalDateTime.now());
 
             String content = "";
@@ -163,18 +158,14 @@ public class JobDetails implements ActionListener {
                 // just writing
                 try (Writer writer = new BufferedWriter(new OutputStreamWriter(
                         new FileOutputStream("src/db/jobs.txt"), "utf-8"))) {
-
-
-                    // using socket for client/server, here would be client
-                    //PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
-                  //  BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                     writer.write(content + userEntry);
 
-                   /* messageIn = inputStream.readUTF();
+                    // using socket for client/server, here would be client
+                   /* PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
+                    BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                    messageIn = inputStream.readUTF();
                     // client prints the message received from server to console
                     System.out.println("message received from server: " + "\"" + messageIn + "\"");
-
-
                     // server sends the message (vehicleEntry array) to client
                     // in this case messageOut would be vehicleEntry
                     outputStream.writeUTF(userEntry);
@@ -207,7 +198,6 @@ public class JobDetails implements ActionListener {
             This section will take the job details, store them into
             a job object, stamp the start time, and retrieve stored file information
             to be sent to the CloudController object to assign vehicles to this job
-
             at the time of submission, the DBAccess object will store the information
             regarding the job into the database. Once a Job is complete, the DB access
             object will be called from the cloud controller to stamp the completion time
@@ -222,8 +212,6 @@ public class JobDetails implements ActionListener {
             }
             int newJobCompletionTime= Integer.parseInt(newJobs.get(newJobs.size()-1).get("JobCompletionTime"));
 
-
-
             HaveJobLabel.setText("Your job will be completed in "  + newJobCompletionTime + " minutes.");
             //SubmitButton.setText("Submit");
 
@@ -231,5 +219,6 @@ public class JobDetails implements ActionListener {
             //frame.dispose();
 
         }
+
     }
 }

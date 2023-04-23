@@ -12,7 +12,7 @@ public class Main {
 
         SignIn.users.add(presetDummy);
 
-        Vehicle dummyCar = new Vehicle(presetDummy1,"Jeep", "Compass Trailhawk", 2022, "ABC123","NY");
+        Vehicle dummyCar = new Vehicle(presetDummy1,"123","Jeep", "Compass Trailhawk", 2022, "ABC123","NY");
         presetDummy1.setVehicle(dummyCar);
         presetDummy1.setIsDonor(true);
         SignIn.users.add(presetDummy1);

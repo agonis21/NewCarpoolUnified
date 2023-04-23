@@ -14,6 +14,7 @@ public class Account implements ActionListener {
     private JButton AccountButton;
     private JLabel logoLabel;
     private JButton terminateJob;
+    private JButton logOutButton;
 
     public Account(DummyUser user)
     {
@@ -28,6 +29,7 @@ public class Account implements ActionListener {
         HomeButton.addActionListener(this);
         TutorialButton.addActionListener(this);
         AboutButton.addActionListener(this);
+        logOutButton.addActionListener(this);
 
 
 
@@ -60,6 +62,12 @@ public class Account implements ActionListener {
             //may have to change later to a diff page?? cancellation report page?
             Donor terminate = new Donor(user);
             frame.dispose();
+        }
+        if (source == logOutButton)
+        {
+            frame.dispose();
+            SignIn signInPage = new SignIn();
+
         }
     }
 }
