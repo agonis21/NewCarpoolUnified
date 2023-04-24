@@ -14,11 +14,12 @@ public class AdminVCC {
     private JButton DiscButton;
     private JLabel logoLabel;
     private JButton AcceptButton;
-    private JLabel RequestInfo;
+    public JLabel RequestInfo;
     private JButton DeclineButton;
     private JButton VehicleButton;
     private JButton JobButton;
     private JButton UserButton;
+    public JLabel TestLabel;
     public Server server;
 
     AdminVCC(Server server) {
@@ -29,6 +30,7 @@ public class AdminVCC {
         frame.setVisible(true);
 
         this.server = server;
+
 
         AcceptButton.addActionListener(new ActionListener() {
             @Override
@@ -152,5 +154,16 @@ public class AdminVCC {
         }
 
     }
+
+    public void updateRequests(String text)
+    {
+       this.TestLabel.setText(text);
+       frame.setVisible(false);
+       frame.setVisible(true);
+
+
+    }
+
+
 
 }

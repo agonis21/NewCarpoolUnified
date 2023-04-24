@@ -5,7 +5,10 @@ public class AdminMain {
         Server server = new Server();
         AdminVCC adminVCC = new AdminVCC(server);
 
+        adminVCC.updateRequests("lkjsdflj");
+
         adminVCC.server.run();
+
     }
 
 }
