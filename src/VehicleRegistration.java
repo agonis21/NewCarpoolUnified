@@ -33,9 +33,7 @@ public class VehicleRegistration implements ActionListener {
     private JTextField StateTF;
     private JPasswordField PwordTF;
     private JPanel back;
-    private JLabel UserIDLabel;
     private JTextField UserId;
-    private JLabel VehicleIdLabel;
     private JTextField VehicleIdText;
 
 
@@ -70,11 +68,11 @@ public class VehicleRegistration implements ActionListener {
         if(source == registerButton)
         {
             Random randomizer = new Random();
-            int userID = Integer.parseInt(UserId.getText());
-            int vehicleID =Integer.parseInt(VehicleIdText.getText());
-            int vin = randomizer.nextInt(100000);
+            //int userID = Integer.parseInt(UserId.getText());
+            // int vehicleID =Integer.parseInt(VehicleIdText.getText());
+            //int vin = randomizer.nextInt(100000);
             //String userID =  UserId.getText();
-            String VIN = ""+vin;
+            //String VIN = ""+vin;
             String carmake = MakeTF.getText();
             String carmodel = ModelTF.getText();
             String caryear = YearTF.getText();
@@ -82,7 +80,7 @@ public class VehicleRegistration implements ActionListener {
             String stateReg = StateTF.getText();
             String timeofReg = String.valueOf(LocalDateTime.now());
 
-            String vehicleEntry = timeofReg+","+userID+","+vehicleID+","+VIN+","+carmake+","+carmodel+","+caryear+","+carplateNum+","+stateReg;
+            String vehicleEntry = timeofReg+","+user.getUserID()+","+carmake+","+carmodel+","+caryear+","+carplateNum+","+stateReg;
 
             //String vehicleEntry = timeofReg+","+userID+","+VIN+","+carmake+","+carmodel+","+caryear+","+carplateNum+","+stateReg;
             System.out.println(vehicleEntry);
@@ -143,7 +141,7 @@ public class VehicleRegistration implements ActionListener {
                 String plateNum = PlateTF.getText();
                 String stateRegistered = StateTF.getText();
 
-                Vehicle dummyVehicle = new Vehicle(user,vehicleID,make,model,year,plateNum,stateRegistered);
+                Vehicle dummyVehicle = new Vehicle(user.getUserID(),make,model,year,plateNum,stateRegistered);
                 try {
 
                     //CLIENT SERVER GOES HERE INSTEAD OF DIRECT INSERT
