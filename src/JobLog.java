@@ -44,7 +44,7 @@ public class JobLog {
 
             }
             if (source == RequestButton) {
-                AdminVCC request = new AdminVCC(server);
+                AdminVCC request = new AdminVCC();
                 frame.dispose();
             }
     }

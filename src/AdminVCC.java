@@ -22,14 +22,14 @@ public class AdminVCC {
     public JLabel TestLabel;
     public Server server;
 
-    AdminVCC(Server server) {
+    AdminVCC() {
         frame.setContentPane(BackgroundPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        this.server = server;
+        //this.server = server;
 
 
         AcceptButton.addActionListener(new ActionListener() {
@@ -160,8 +160,6 @@ public class AdminVCC {
        this.TestLabel.setText(text);
        frame.setVisible(false);
        frame.setVisible(true);
-
-
     }
 
 

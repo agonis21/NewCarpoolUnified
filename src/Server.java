@@ -5,7 +5,9 @@ import java.io.ObjectInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class Server {
+public class Server extends AdminVCC implements Runnable{
+    private Thread t;
+    private String threadName;
 
 	/*
 	    ==============MILESTONE 5================
@@ -24,13 +26,23 @@ public class Server {
     private boolean approved;
     String messageIn = "";
     String messageOut = "";
-    public Server(){}
+    public Server(){
+        super();
+    }
+
+    public Server( String name) {
+        super();
+        threadName = name;
+        System.out.println("Creating " +  threadName );
+
+        super.updateRequests("dfafdafdsafdsf");
+    }
+
     public boolean isAccepted(Boolean approved){
         return this.approved=approved;
     }
     public  void run() {
-
-
+        System.out.println("Running " +  threadName );
 
         try {
 
@@ -46,11 +58,13 @@ public class Server {
             // server reads a message message from client
             inputStream = new DataInputStream(socket.getInputStream());
             ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+            readMessageMethod();
 
             // server sends a message to client
             outputStream = new DataOutputStream(socket.getOutputStream());
             recieved = (Requests) objectInputStream.readObject();
             System.out.println(recieved.jobRequest.jobType);
+            writeMessageMethod();
 
 
             // as long as message is not exit keep reading and sending message to client
@@ -85,6 +99,17 @@ public class Server {
             e.printStackTrace();
         }
     }
+
+    private void readMessageMethod() {
+        // server reads a message message from client
+        super.updateRequests("dfafdafdsafdsf");
+    }
+
+    private void writeMessageMethod() {
+        // server sends a message to client
+
+    }
+
     public void respond () {
         try {
             if (approved == true) {
@@ -98,7 +123,17 @@ public class Server {
         }
 
 
-    }}
+    }
+
+    public void start () {
+        System.out.println("Starting " +  threadName );
+        if (t == null) {
+            t = new Thread (this, threadName);
+            t.start ();
+        }
+    }
+
+}
 
 
 
