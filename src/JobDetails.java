@@ -128,6 +128,15 @@ public class JobDetails implements ActionListener {
             System.out.println(userEntry);
             //System.out.println("Time of Submission:"+ LocalDateTime.now());
 
+            try {
+                SemClient sccc1 = new SemClient(userEntry);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            } catch (ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
+
+
             String content = "";
             // just reading and saving
             try {

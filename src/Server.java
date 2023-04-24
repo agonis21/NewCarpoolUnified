@@ -1,7 +1,4 @@
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -46,53 +43,15 @@ public class Server extends AdminVCC implements Runnable{
 
         try {
 
-            System.out.println("----------$$$ This is server side $$$--------");
-            System.out.println("wating for client to connect...");
-            // creating the server
-            serverSocket = new ServerSocket(9806);
-            // sever accepts connection request from client
-            socket = serverSocket.accept();
-            System.out.println("client is connected!");
+            ServerSocket serverSocket = new ServerSocket(1234);
+            System.out.println("Server is running...");
 
-
-            // server reads a message message from client
-            inputStream = new DataInputStream(socket.getInputStream());
-            ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
-            readMessageMethod();
-
-            // server sends a message to client
-            outputStream = new DataOutputStream(socket.getOutputStream());
-            recieved = (Requests) objectInputStream.readObject();
-            System.out.println(recieved.jobRequest.jobType);
-            writeMessageMethod();
-
-
-            // as long as message is not exit keep reading and sending message to client
-           /* while (!messageIn.equals("exit")) {
-
-
-                // extract the message from client
-                messageIn = inputStream.readUTF();
-                // server prints the message received from client to console
-                System.out.println("message received from client: " + "\"" + messageIn + "\"");
-
-                // ********************************************************
-
-                //System.out.println("Enter a message you want to send to client side: ");
-
-                if(isAccepted == true)
-                {
-                    messageOut = "Your request has been accepted!";
-                }
-                else
-                {
-                    messageOut = "Your request has been rejected.";
-                }
-
-                // server sends the message to client
-                outputStream.writeUTF(messageOut);
+            while (true) {
+                Socket clientSocket = serverSocket.accept();
+                System.out.println("Client connected: " + clientSocket.getInetAddress().getHostAddress());
+                ClientHandler clientHandler = new ClientHandler(clientSocket);
+                new Thread(clientHandler).start();
             }
-        */
 
         } catch (Exception e) {
 
@@ -137,5 +96,34 @@ public class Server extends AdminVCC implements Runnable{
 
 
 
+class ClientHandle implements Runnable {
+    private Socket clientSocket;
+
+    public ClientHandle(Socket clientSocket) {
+        this.clientSocket = clientSocket;
+    }
+
+    @Override
+    public void run() {
+        try {
+            ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
+            ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream());
+
+            Object inputObject;
+            while ((inputObject = in.readObject()) != null) {
+                System.out.println("Received message from client: " + inputObject.toString());
+                out.writeObject("Server received message: " + inputObject.toString());
+
+            }
+
+            System.out.println("Client disconnected: " + clientSocket.getInetAddress().getHostAddress());
+            in.close();
+            out.close();
+            clientSocket.close();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+}
 
 

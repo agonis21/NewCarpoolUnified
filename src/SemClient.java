@@ -3,12 +3,12 @@ import java.net.*;
 import java.util.ArrayList;
 
 public class SemClient {
-    JobRequest request;
+    String requestDetails;
     public SemClient(){
 
     }
-    public SemClient(JobRequest request) throws IOException, ClassNotFoundException {
-        this.request = request;
+    public SemClient(String request) throws IOException, ClassNotFoundException {
+        this.requestDetails = request;
 
         Socket socket = new Socket("localhost", 1234);
         System.out.println("Connected to server.");
@@ -26,7 +26,7 @@ public class SemClient {
 //            System.out.println("Received response from server: " + serverResponse.toString());
 //        }
 
-        out.writeObject(this.request);
+        out.writeObject(this.requestDetails);
         Object serverResponse = in.readObject();
         System.out.println("Received response from server: " + serverResponse.toString());
 
@@ -36,6 +36,6 @@ public class SemClient {
         socket.close();
     }
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-
+        SemClient sc1 = new SemClient("the weather");
     }
 }
