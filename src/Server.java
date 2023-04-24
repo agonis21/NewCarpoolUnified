@@ -59,7 +59,10 @@ public class Server extends AdminVCC implements Runnable{
             while ((inputObject = in.readObject()) != null) {
                 System.out.println("Received message from client: " + inputObject.toString());
                 super.updateRequestInfo(inputObject.toString()); //takes userEntry
+
                 out.writeObject("Server received message: " + inputObject.toString());
+                super.updateRequestInfo(inputObject.toString());
+
             }
 
             System.out.println("Client disconnected: " + socket.getInetAddress().getHostAddress());

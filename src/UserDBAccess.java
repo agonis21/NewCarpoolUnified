@@ -1,4 +1,3 @@
-
 import java.sql.*;
 
 public class UserDBAccess {
@@ -10,7 +9,7 @@ public class UserDBAccess {
     }
 
 
-    public static Boolean usernameTaken(String username) throws SQLException {
+    public static Boolean usernameTaken(String username) throws SQLException{
 
         conn = DBConnection.getMyConnection();
         String query = ("SELECT userID FROM user WHERE username = ?;");
