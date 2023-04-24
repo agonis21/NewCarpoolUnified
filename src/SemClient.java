@@ -28,6 +28,7 @@ public class SemClient implements Runnable {
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
+        SemClient sc1 = new SemClient("dsadas");
     }
 
     @Override
