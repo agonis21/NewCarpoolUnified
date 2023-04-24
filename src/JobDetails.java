@@ -113,8 +113,8 @@ public class JobDetails implements ActionListener {
             SubmissionConfirmLabel.setText("Submission Complete!");
 
             //Random randomizer = new Random();
-            String userID = UserId.getText();
-            String jobID = JobId.getText();
+            int userID = Integer.parseInt(UserId.getText());
+            int jobID = Integer.parseInt(JobId.getText());
             String jobType= JobType.getSelectedItem().toString();
             String deadline = DurationText.getText();
             String duration = MinutesTF.getText();

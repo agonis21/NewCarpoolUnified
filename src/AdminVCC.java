@@ -108,7 +108,7 @@ public class AdminVCC {
 
     public String unpack(Requests requests){
         if (requests.jobRequest != null){
-            String jobID = requests.jobRequest.jobId;
+            int jobID = requests.jobRequest.jobId;
             DummyUser user = requests.jobRequest.user;
             int userID = user.getUserID();
             String jobType = requests.jobRequest.jobType;
@@ -120,7 +120,7 @@ public class AdminVCC {
             // LocalDateTime userDuration;
         }
         if (requests.donRequest != null){
-            String vehicleId = requests.donRequest.vehicle.vehicleId;
+            int vehicleId = requests.donRequest.vehicle.vehicleId;
             String make = requests.donRequest.vehicle.make;
             String model = requests.donRequest.vehicle.model;
             int year = requests.donRequest.vehicle.year;

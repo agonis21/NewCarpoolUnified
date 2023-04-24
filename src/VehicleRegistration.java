@@ -70,8 +70,8 @@ public class VehicleRegistration implements ActionListener {
         if(source == registerButton)
         {
             Random randomizer = new Random();
-            String userID = UserId.getText();
-            String vehicleID = VehicleIdText.getText();
+            int userID = Integer.parseInt(UserId.getText());
+            int vehicleID =Integer.parseInt(VehicleIdText.getText());
             int vin = randomizer.nextInt(100000);
             //String userID =  UserId.getText();
             String VIN = ""+vin;

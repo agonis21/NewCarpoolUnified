@@ -21,8 +21,8 @@ public class JobDBAccess {
         PreparedStatement stmt = conn.prepareStatement(query);
 
         Timestamp timestamp = Timestamp.valueOf(String.valueOf(LocalDateTime.now()));
-        stmt.setString(1, job.getUserId());
-        stmt.setString(2, job.getJobId());
+        stmt.setInt(1, job.getUserId());
+        stmt.setInt(2, job.getJobId());
         stmt.setString(3, job.getJobType());
         stmt.setString(4, job.getJobDeadline());
         stmt.setString(5, job.getJobDuration());
@@ -46,8 +46,8 @@ public class JobDBAccess {
     //NOT FINISHED NEEDS WORK
     private static Job buildJob(ResultSet rs)throws SQLException{
         if(rs.next()){
-           String jobId = rs.getString("jobID");
-            String userID = rs.getString("userID");
+           int jobId = rs.getInt("jobID");
+            int userID = rs.getInt("userID");
             String jobType = rs.getString("jobType");
             String jobDeadline = rs.getString("Deadline");
             String jobDuration = rs.getString("Duration");

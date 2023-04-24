@@ -11,9 +11,9 @@ import java.util.Map;
 
 
 public class Job implements Serializable {
-    String jobId;
+    int jobId;
     DummyUser user;
-    String userId;
+    int userId;
     String jobType;
     String jobDeadline;
     //LocalDateTime userDuration;// job duration entered by user
@@ -23,8 +23,8 @@ public class Job implements Serializable {
     // jobCompletiontime needs to be added
 
     int redundancy;
-    public String getUserId(){return this.userId;}
-    public String getJobId(){return this.jobId;}
+    public int getUserId(){return this.userId;}
+    public int getJobId(){return this.jobId;}
     public String getJobType(){return this.jobType;}
     public String getJobDeadline(){return this.jobDeadline;}
     public String getJobDuration(){return this.duration;}
@@ -40,7 +40,7 @@ public class Job implements Serializable {
     }
 
     //this constructor will be used to generate complete job objects from queries
-    public Job(String jobId, String userId, String jobType, String jobDeadline, String duration, Timestamp timestamp){
+    public Job(int jobId, int userId, String jobType, String jobDeadline, String duration, Timestamp timestamp){
 
         this.jobId=jobId;
         this.userId=userId;
