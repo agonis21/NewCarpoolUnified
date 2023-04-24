@@ -20,6 +20,19 @@ public class AdminVCC {
     private JButton JobButton;
     private JButton UserButton;
     public JLabel TestLabel;
+    private JLabel userIDJ;
+    private JLabel jobID;
+    private JLabel jobType;
+    private JLabel deadline;
+    private JLabel userIDV;
+    private JLabel compTime;
+    private JLabel duraTion;
+    private JLabel VechID;
+    private JLabel Make;
+    private JLabel Model;
+    private JLabel Year;
+    private JLabel plateNum;
+    private JLabel state;
     public Server server;
 
     AdminVCC() {
@@ -157,9 +170,61 @@ public class AdminVCC {
 
     public void updateRequestInfo(String text)
     {
-       this.TestLabel.setText(text);
+        //if comma 6, job if comma 7, vehicle
+        String[] reqArr = text.split(",");
+        System.out.println(reqArr.length);
+        if(reqArr.length == 7){
+        updateRequestJobInfo(text);
+        }
+        else{
+        updateRequestVehicleInfo(text);
+        }
+
+     //  this.TestLabel.setText(text); //sets userEntry on GUI
        frame.setVisible(false);
        frame.setVisible(true);
+    }
+
+    public void updateRequestJobInfo(String text){
+        String[] jobArr = text.split(",");
+        //update labels based on position each category of array
+        this.userIDJ.setText(jobArr[1]);
+        this.jobID.setText(jobArr[2]);
+        this.jobType.setText(jobArr[3]);
+        this.deadline.setText(jobArr[4]);
+        this.duraTion.setText(jobArr[5]);
+        this.compTime.setText(jobArr[6]);
+
+        this.userIDV.setText("");
+        this.VechID.setText("");
+        this.Make.setText("");
+        this.Model.setText("");
+        this.Year.setText("");
+        this.plateNum.setText("");
+        this.state.setText("");
+    }
+    public void updateRequestVehicleInfo(String text){
+    try {
+    String[] vecArr = text.split(",");
+    //update labels based on position each category of array
+    this.userIDV.setText(vecArr[2]);
+    this.VechID.setText(vecArr[3]);
+    this.Make.setText(vecArr[4]);
+    this.Model.setText(vecArr[5]);
+    this.Year.setText(vecArr[6]);
+    this.plateNum.setText(vecArr[7]);
+    this.state.setText(vecArr[8]);
+
+        this.userIDJ.setText("");
+        this.jobID.setText("");
+        this.jobType.setText("");
+        this.deadline.setText("");
+        this.duraTion.setText("");
+        this.compTime.setText("");
+    } catch(ArrayIndexOutOfBoundsException e){
+    //throw new ArrayIndexOutOfBoundsException();
+    }
+
     }
 
 

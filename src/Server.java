@@ -32,7 +32,7 @@ public class Server extends AdminVCC implements Runnable{
         threadName = name;
         System.out.println("Creating " +  threadName );
 
-        super.updateRequestInfo("dfafdafdsafdsf");
+        //super.updateRequestInfo("dfafdafdsafdsf");
     }
 
     public boolean isAccepted(Boolean approved){
@@ -54,11 +54,11 @@ public class Server extends AdminVCC implements Runnable{
 
             ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
-
+//be able to take multiple messages in while loop
             Object inputObject;
             while ((inputObject = in.readObject()) != null) {
                 System.out.println("Received message from client: " + inputObject.toString());
-                super.updateRequestInfo(inputObject.toString());
+                super.updateRequestInfo(inputObject.toString()); //takes userEntry
                 out.writeObject("Server received message: " + inputObject.toString());
             }
 
