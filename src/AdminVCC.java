@@ -35,15 +35,15 @@ public class AdminVCC {
         AcceptButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                server.isAccepted(true);
-                server.respond();
+//                server.isAccepted(true);
+//                server.respond();
             }
         });
         DeclineButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                server.isAccepted(false);
-                server.respond();
+//                server.isAccepted(false);
+//                server.respond();
             }
         });
 
@@ -155,7 +155,7 @@ public class AdminVCC {
 
     }
 
-    public void updateRequests(String text)
+    public void updateRequestInfo(String text)
     {
        this.TestLabel.setText(text);
        frame.setVisible(false);
