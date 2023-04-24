@@ -21,8 +21,8 @@ public class VehicleDBAccess {
         stmt.setInt(3, vehicle.getYear());
         stmt.setString(4,vehicle.getMake());
         stmt.setString(5,vehicle.getModel());
-        stmt.setString(6,vehicle.getUserId());
-        stmt.setString(7,vehicle.getVehicleId());
+        stmt.setInt(6,vehicle.getUserId());
+        stmt.setInt(7,vehicle.getVehicleId());
 
         int result = stmt.executeUpdate();
         if(result ==0)
@@ -47,8 +47,8 @@ public class VehicleDBAccess {
             String make = rs.getString("make");
             String model = rs.getString("model");
             Timestamp timestamp = rs.getTimestamp("created");
-            String userID = rs.getString("userID");
-            String vehicleId= rs.getString("vehicleId");
+            int userID = rs.getInt("userID");
+            int vehicleId= rs.getInt("vehicleId");
             Vehicle vehicle = new Vehicle(userID,vehicleId,make,model,year,plateNumber,stateRegistered);
             return vehicle;
         }

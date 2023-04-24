@@ -2,8 +2,8 @@ import java.io.Serializable;
 
 public class Vehicle implements Serializable {
     public DummyUser user;
-    public String userId;
-    public String vehicleId;
+    public int userId;
+    public int vehicleId;
     public String make ;
     public String model ;
     public int year;
@@ -11,7 +11,7 @@ public class Vehicle implements Serializable {
     public String stateRegistered;
 
 
-    public Vehicle(DummyUser user, String vehicleId, String make, String model, int year, String plateNumber, String stateRegistered)
+    public Vehicle(DummyUser user, int vehicleId, String make, String model, int year, String plateNumber, String stateRegistered)
     {
         this.make = make;
         this.model = model;
@@ -23,7 +23,7 @@ public class Vehicle implements Serializable {
     }
 
     //DB constructor
-    public Vehicle(String userID, String vehicleId, String make, String model, int year, String plateNumber, String stateRegistered)
+    public Vehicle(int userID, int vehicleId, String make, String model, int year, String plateNumber, String stateRegistered)
     {
         this.make = make;
         this.model = model;
@@ -40,8 +40,8 @@ public class Vehicle implements Serializable {
     public String getMake(){return this.make;}
     public String getModel(){return this.model;}
     public int getYear(){return this.year;}
-    public String getUserId(){return this.userId;}
-    public String getVehicleId(){return this.vehicleId;}
+    public int getUserId(){return this.userId;}
+    public int getVehicleId(){return this.vehicleId;}
 
 
 
