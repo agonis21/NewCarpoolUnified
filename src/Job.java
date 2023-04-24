@@ -28,6 +28,14 @@ public class Job implements Serializable {
     public String getJobType(){return this.jobType;}
     public String getJobDeadline(){return this.jobDeadline;}
     public String getJobDuration(){return this.duration;}
+    public void setRedundancy(int redundancy)
+    {
+        this.redundancy = redundancy;
+    }
+    public void setDuration(String duration)
+    {
+        this.duration = duration;
+    }
 
     //public LocalDateTime getStartTime(){return this.startTime;}
 
@@ -50,6 +58,16 @@ public class Job implements Serializable {
         //this.userDuration=userDuration;
        // this.startTime=startTime;
        // this.endTime=endTime;
+        this.duration = duration;
+        //this.redundancy=redundancy;
+    }
+    public Job(int jobId, int userId, String jobType, String jobDeadline, String duration){
+
+        this.jobId=jobId;
+        this.userId=userId;
+        this.jobType=jobType;
+        this.jobDeadline=jobDeadline;
+
         this.duration = duration;
         //this.redundancy=redundancy;
     }

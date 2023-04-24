@@ -20,13 +20,11 @@ public class JobDBAccess {
         String query = "INSERT INTO job(userID,jobId,jobType,jobDeadline,jobDuration, timestamp) VALUES(?,?,?,?,?, current_timestamp());";
         PreparedStatement stmt = conn.prepareStatement(query);
 
-        Timestamp timestamp = Timestamp.valueOf(String.valueOf(LocalDateTime.now()));
         stmt.setInt(1, job.getUserId());
         stmt.setInt(2, job.getJobId());
         stmt.setString(3, job.getJobType());
         stmt.setString(4, job.getJobDeadline());
         stmt.setString(5, job.getJobDuration());
-        stmt.setTimestamp(6, timestamp);
         //stmt.setString(7, job.getJobCompletionTime());  // needs to be added and fixed
 
 
@@ -43,7 +41,6 @@ public class JobDBAccess {
     }
 
 
-    //NOT FINISHED NEEDS WORK
     private static Job buildJob(ResultSet rs)throws SQLException{
         if(rs.next()){
            int jobId = rs.getInt("jobID");

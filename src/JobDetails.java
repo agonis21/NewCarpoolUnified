@@ -130,6 +130,8 @@ public class JobDetails implements ActionListener {
 
             String content = "";
             // just reading and saving
+
+            Job dummyJob = new Job(jobID,userID,jobType,deadline,duration);
             try {
                 File myObj = new File("src/db/" + "jobs.txt");
                 // Get the absolute path of file f
